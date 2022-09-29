@@ -27,13 +27,7 @@ public class Computer {
         }
     }
 
-    public String getNumbers(){
-        StringBuilder sb = new StringBuilder();
-
-        for(int number : numbers){
-            sb.append(number);
-        }
-
-        return sb.toString();
+    public List<Integer> getNumbers(){
+        return this.numbers;
     }
 }
