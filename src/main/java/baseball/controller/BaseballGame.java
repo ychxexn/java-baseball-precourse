@@ -1,7 +1,7 @@
 package baseball.controller;
 
 import baseball.model.Computer;
-import baseball.model.GameStatus;
+import baseball.util.GameStatus;
 import baseball.model.Player;
 import baseball.model.Referee;
 import baseball.view.InputView;
@@ -23,23 +23,27 @@ public class BaseballGame implements Game {
 
     @Override
     public void start() {
-        do{
+        do {
             init();
             playBaseballGame();
-        }while(selectRestart());
+        } while(selectRestart());
     }
 
     private void playBaseballGame() {
         gameStatus = GameStatus.IN_PROGRESS;
 
         while(gameStatus == GameStatus.IN_PROGRESS) {
-            String playerNum = InputView.getUserNumbers();
-            player.setNumbers(playerNum);
-            gameStatus = referee.judge(computer.getNumbers(), player.getNumbers());
+            setRound(InputView.getUserNumbers());
+            gameStatus = referee.judge();
             referee.printResult();
         }
 
         OutputView.printFinish();
+    }
+
+    private void setRound(String userNumbers) {
+        player.setNumbers(userNumbers);
+        referee.init(computer.getNumbers(), player.getNumbers());
     }
 
     @Override

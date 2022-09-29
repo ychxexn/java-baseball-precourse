@@ -1,6 +1,6 @@
 package baseball.view;
 
-import baseball.model.Message;
+import baseball.util.Message;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -9,7 +9,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String getUserChoice(){
+    public static String getUserChoice() {
         System.out.println(Message.CHOICE.getMessage());
         return Console.readLine();
     }

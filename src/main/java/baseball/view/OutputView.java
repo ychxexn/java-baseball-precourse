@@ -1,6 +1,6 @@
 package baseball.view;
 
-import baseball.model.Message;
+import baseball.util.Message;
 
 public class OutputView {
     public static void printErrorInput() {

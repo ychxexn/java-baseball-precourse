@@ -1,4 +1,4 @@
-package baseball.model;
+package baseball.util;
 
 public enum Message {
     INPUT("숫자를 입력해주세요 : "),

@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.rule.BaseballGameRule;
+import baseball.util.GameStatus;
 import baseball.view.OutputView;
 
 import java.util.List;
@@ -13,26 +14,39 @@ public class Referee {
     private List<Integer> playerNum;
 
     public Referee() {
-        init();
     }
 
-    private void init() {
+    public void init(List<Integer> computerNum, List<Integer> playerNum) {
         sCount = 0;
         bCount = 0;
-    }
-
-    private void init(List<Integer> computerNum, List<Integer> playerNum) {
-        init();
         this.computerNum = computerNum;
         this.playerNum = playerNum;
     }
 
-    public GameStatus judge(List<Integer> computerNum, List<Integer> playerNum) {
-        init(computerNum, playerNum);
+    public GameStatus judge() {
+        for(int i=0; i< BaseballGameRule.LENGTH_OF_NUMBERS; i++) {
+            countStrike(computerNum.get(i), playerNum.get(i));
+        }
+        for(int number : playerNum) {
+            countBall(number);
+        }
 
-        countStrike();
-        countBall();
+        return getGameStatus();
+    }
 
+    private void countStrike(Integer computerNum, Integer playerNum) {
+        if(Objects.equals(computerNum, playerNum)){
+            sCount++;
+        }
+    }
+
+    private void countBall(int number) {
+        if(computerNum.contains(number)) {
+            bCount++;
+        }
+    }
+
+    private GameStatus getGameStatus() {
         if(sCount == BaseballGameRule.LENGTH_OF_NUMBERS) {
             return GameStatus.END;
         }
@@ -40,23 +54,7 @@ public class Referee {
         return GameStatus.IN_PROGRESS;
     }
 
-    private void countStrike() {
-        for(int i=0; i< BaseballGameRule.LENGTH_OF_NUMBERS; i++) {
-            if(Objects.equals(computerNum.get(i), playerNum.get(i))){
-                sCount++;
-            }
-        }
-    }
-
-    private void countBall() {
-        for(int number : playerNum) {
-            if(computerNum.contains(number)) {
-                bCount++;
-            }
-        }
-    }
-
-    public void printResult(){
+    public void printResult() {
         if(bCount - sCount != 0){
             OutputView.printBall(bCount - sCount);
         }
