@@ -8,5 +8,5 @@
 - [ ] 플레이어가 입력한 수가 컴퓨터의 수와 같으면 플레이어가 승리하며 게임이 종료된다.
 - [ ] 게임이 종료되면 1을 입력하여 게임을 새로 시작할 수 있다.
 - [ ] 게임이 종료되면 2를 입력하여 게임을 종료할 수 있다.
-- [ ] 사용자가 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다.
-- [ ] IllegalArgumentException이 발생하면 애플리케이션이 종료된다.
+- [x] 사용자가 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다.
+- [x] IllegalArgumentException이 발생하면 애플리케이션이 종료된다.
