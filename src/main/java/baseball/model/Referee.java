@@ -26,10 +26,16 @@ public class Referee {
         this.playerNum = playerNum;
     }
 
-    public void judge(List<Integer> computerNum, List<Integer> playerNum) {
+    public GameStatus judge(List<Integer> computerNum, List<Integer> playerNum) {
         init(computerNum, playerNum);
 
         countStrike();
+
+        if(sCount == BaseballGameRule.LENGTH_OF_NUMBERS) {
+            return GameStatus.END;
+        }
+
+        return GameStatus.IN_PROGRESS;
     }
 
     private void countStrike() {
