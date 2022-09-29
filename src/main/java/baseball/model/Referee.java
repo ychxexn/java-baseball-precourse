@@ -30,6 +30,7 @@ public class Referee {
         init(computerNum, playerNum);
 
         countStrike();
+        countBall();
 
         if(sCount == BaseballGameRule.LENGTH_OF_NUMBERS) {
             return GameStatus.END;
@@ -46,9 +47,24 @@ public class Referee {
         }
     }
 
+    private void countBall() {
+        for(int number : playerNum) {
+            if(computerNum.contains(number)) {
+                bCount++;
+            }
+        }
+    }
+
     public void printResult(){
         StringBuilder sb = new StringBuilder();
 
+        if(bCount != 0){
+            sb.append(bCount - sCount);
+            sb.append("볼");
+        }
+        if(sb.length() != 0){
+            sb.append(" ");
+        }
         if(sCount != 0){
             sb.append(sCount);
             sb.append("스트라이크");
