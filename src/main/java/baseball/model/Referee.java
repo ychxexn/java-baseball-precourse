@@ -69,6 +69,9 @@ public class Referee {
             sb.append(sCount);
             sb.append("스트라이크");
         }
+        if(sb.length() == 0){
+            sb.append("낫싱");
+        }
 
         System.out.println(sb);
     }
