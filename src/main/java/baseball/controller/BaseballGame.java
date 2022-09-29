@@ -21,7 +21,9 @@ public class BaseballGame implements Game {
     public void start() {
         System.out.println(computer.getNumbers().toString());
         while(true) {
-            player.setNumbers(Console.readLine());
+            String playerNum = Console.readLine();
+            player.setNumbers(playerNum);
+            referee.judge(computer.getNumbers(), player.getNumbers());
             referee.printResult();
         }
     }

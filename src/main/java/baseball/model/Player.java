@@ -16,8 +16,10 @@ public class Player {
         numbers = new ArrayList<>();
     }
 
-    public void setNumbers(String input){
+    public void setNumbers(String input) {
         checkValidInputLength(input.length());
+
+        numbers.clear();
 
         for(char c : input.toCharArray()){
             checkValidNumber(c);
