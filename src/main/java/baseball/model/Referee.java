@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.rule.BaseballGameRule;
+import baseball.view.OutputView;
 
 import java.util.List;
 import java.util.Objects;
@@ -56,23 +57,15 @@ public class Referee {
     }
 
     public void printResult(){
-        StringBuilder sb = new StringBuilder();
-
-        if(bCount != 0){
-            sb.append(bCount - sCount);
-            sb.append("볼");
-        }
-        if(sb.length() != 0){
-            sb.append(" ");
+        if(bCount - sCount != 0){
+            OutputView.printBall(bCount - sCount);
         }
         if(sCount != 0){
-            sb.append(sCount);
-            sb.append("스트라이크");
+            OutputView.printStrike(sCount);
         }
-        if(sb.length() == 0){
-            sb.append("낫싱");
+        if(bCount == 0 && sCount == 0){
+            OutputView.printNothing();
         }
-
-        System.out.println(sb);
+        OutputView.printNewLine();
     }
 }

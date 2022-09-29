@@ -4,7 +4,8 @@ import baseball.model.Computer;
 import baseball.model.GameStatus;
 import baseball.model.Player;
 import baseball.model.Referee;
-import camp.nextstep.edu.missionutils.Console;
+import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class BaseballGame implements Game {
     private GameStatus gameStatus;
@@ -31,22 +32,18 @@ public class BaseballGame implements Game {
     private void playBaseballGame() {
         gameStatus = GameStatus.IN_PROGRESS;
 
-        System.out.println(computer.getNumbers().toString());
-
         while(gameStatus == GameStatus.IN_PROGRESS) {
-            String playerNum = Console.readLine();
+            String playerNum = InputView.getUserNumbers();
             player.setNumbers(playerNum);
             gameStatus = referee.judge(computer.getNumbers(), player.getNumbers());
             referee.printResult();
         }
 
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        OutputView.printFinish();
     }
 
     @Override
     public boolean selectRestart() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-
-        return "1".equals(Console.readLine());
+        return "1".equals(InputView.getUserChoice());
     }
 }

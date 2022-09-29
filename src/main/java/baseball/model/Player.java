@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.rule.BaseballGameRule;
+import baseball.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,25 +18,30 @@ public class Player {
     }
 
     public void setNumbers(String input) {
-        checkValidInputLength(input.length());
+        try {
+            checkValidInputLength(input.length());
 
-        numbers.clear();
+            numbers.clear();
 
-        for(char c : input.toCharArray()){
-            checkValidNumber(c);
-            numbers.add(c - '0');
+            for(char c : input.toCharArray()){
+                checkValidNumber(c);
+                numbers.add(c - '0');
+            }
+        }catch (IllegalArgumentException e) {
+            OutputView.printErrorInput();
+            throw new IllegalArgumentException(Message.ERROR_INPUT.getMessage());
         }
     }
 
-    private void checkValidInputLength(int length) {
+    private void checkValidInputLength(int length) throws IllegalArgumentException {
         if(length != BaseballGameRule.LENGTH_OF_NUMBERS){
-            throw new IllegalArgumentException("잘못된 입력입니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
-    private void checkValidNumber(char c) {
+    private void checkValidNumber(char c) throws IllegalArgumentException {
         if(c < '1' || c > '9'){
-            throw new IllegalArgumentException("잘못된 입력입니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
