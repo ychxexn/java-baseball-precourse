@@ -55,15 +55,23 @@ public class Referee {
     }
 
     public void printResult() {
-        if(bCount - sCount != 0){
-            OutputView.printBall(bCount - sCount);
+        if(getBCount() != 0){
+            OutputView.printBall(getBCount());
         }
-        if(sCount != 0){
-            OutputView.printStrike(sCount);
+        if(getSCount() != 0){
+            OutputView.printStrike(getSCount());
         }
-        if(bCount == 0 && sCount == 0){
+        if(getBCount() == 0 && getSCount() == 0){
             OutputView.printNothing();
         }
         OutputView.printNewLine();
+    }
+
+    private int getBCount() {
+        return bCount - sCount;
+    }
+
+    private int getSCount() {
+        return sCount;
     }
 }
