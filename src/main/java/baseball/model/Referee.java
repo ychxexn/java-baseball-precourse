@@ -67,11 +67,11 @@ public class Referee {
         OutputView.printNewLine();
     }
 
-    private int getBCount() {
+    public int getBCount() {
         return bCount - sCount;
     }
 
-    private int getSCount() {
+    public int getSCount() {
         return sCount;
     }
 }
